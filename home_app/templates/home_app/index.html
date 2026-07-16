@@ -1,0 +1,346 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>امیرحسین | توسعه‌دهنده وب با جنگو</title>
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static 'images/profile.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="mainNav">
+    <a href="#" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        Django · Full-Stack
+    </a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#projects" class="active">پروژه‌ها</a></li>
+        <li><a href="#skills">مهارت‌ها</a></li>
+        <li><a href="#experience">تجربه</a></li>
+        <li><a href="#contact">تماس</a></li>
+    </ul>
+    <div class="nav-auth">
+        <button class="hamburger" id="hamburger" aria-label="منو">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="#contact" class="btn-sm btn-sm-fill">همکاری</a>
+    </div>
+</nav>
+
+<!-- ── HERO (PERSONAL BRANDING) ── -->
+<section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-inner">
+        <div class="hero-eyebrow">
+            <div class="hero-eyebrow-line"></div>
+            <span>Python · Django · Full-Stack</span>
+            <div class="hero-eyebrow-line"></div>
+        </div>
+
+        <!-- Large professional profile photo -->
+        <div class="hero-photo-wrap">
+            <div class="hero-photo-frame">
+                <!-- Replace src with your actual photo -->
+
+                <img src="{{ Me.profile.url }}">
+            </div>
+        </div>
+
+        <!-- Full name as largest heading -->
+        <h1 class="hero-name"><strong>{{ Me.name }}</strong></h1>
+
+        <!-- Title: Python & Django Full-Stack Developer -->
+        <div class="hero-role">
+            <span class="hero-role-highlight">Python &amp; Django</span> Full-Stack Developer
+        </div>
+
+        <!-- Short professional introduction -->
+        <p class="hero-sub">
+            من وب‌سایت‌های مدرن، امن و مقیاس‌پذیر با <strong>جنگو</strong> و فرانت‌اند هوشمند می‌سازم.
+            از معماری بک‌اند تا تجربه کاربری — همه‌چیز با کیفیت بالا تحویل داده می‌شود.
+        </p>
+
+        <div class="hero-divider"></div>
+
+        <div class="hero-cta-group">
+            <a href="#projects" class="hero-cta-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 5l-7 7 7 7"/>
+                </svg>
+                مشاهده پروژه‌ها
+            </a>
+
+            <a href="#contact" class="hero-cta-secondary">همکاری</a>
+        </div>
+
+        <div class="hero-stack">
+            {% for fanavary in fanavaries %}
+                <span class="hero-stack-item">{{ fanavary.name }}</span>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section class="projects-section section-padding" id="projects">
+    <div class="section-header">
+        <div class="section-label">
+            <div class="section-label-line"></div>
+            <span>نمونه کارها</span></div>
+        <h2 class="section-title">پروژه‌های <strong>ساخته‌شده</strong></h2>
+        <p class="section-sub">هر پروژه یک داستان است — از طراحی تا پیاده‌سازی کامل</p>
+    </div>
+    <div class="projects-grid">
+
+        <!-- Project 1 -->
+        {% for site in sits %}
+            <div class="project-card">
+                <div class="project-image">
+
+                    <img src="{{ site.image.url }}" alt="Project">
+                </div>
+
+                <div class="project-content">
+                    <div class="project-name">{{ site.title }}</div>
+                    <div class="project-desc">{{ site.text }}
+                    </div>
+                    <div class="project-tech">
+                        {% for fanavary in site.fanavaries.all %}
+                            <span>{{ fanavary.name }}</span>
+                        {% endfor %}
+
+                    </div>
+                    <div class="project-links">
+                        <a href="{{ site.github_url }}" class="btn-github" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="{{ site.demo_url }}" class="btn-demo" target="_blank" rel="noopener noreferrer">مشاهده دمو</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section class="skills-section section-padding" id="skills">
+    <div class="section-header">
+        <div class="section-label">
+            <div class="section-label-line"></div>
+            <span>تخصص‌ها</span></div>
+        <h2 class="section-title">ابزارها و <strong>فناوری‌ها</strong></h2>
+    </div>
+    <div class="skills-grid">
+        {% for abzar in abzars %}
+            <div class="skill-category">
+                <div class="skill-category-title"><span>{{ abzar.imoji }}</span> {{ abzar.name }}</div>
+                {% for fanavary in abzar.fanavaries.all %}
+                    <span class="skill-tag">{{ fanavary.name }}</span>
+                {% endfor %}
+
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about-section section-padding" id="about">
+    <div class="section-header">
+        <div class="section-label">
+            <div class="section-label-line"></div>
+            <span>درباره من</span></div>
+        <h2 class="section-title">چرا با من <strong>همکاری کنید</strong></h2>
+    </div>
+    <div class="about-content">
+        <div class="about-text">
+            <p>
+                <strong>من یک توسعه‌دهنده فول‌استک با تمرکز بر پایتون و جنگو هستم.</strong>
+                از ابتدا تا انتهای پروژه — از طراحی معماری و پیاده‌سازی بک‌اند تا رابط کاربری زیبا و پاسخگو — همه را با
+                کیفیت بالا تحویل می‌دهم.
+            </p>
+            <p style="margin-top:16px;">
+                با <strong>با مهارت و تجربه</strong> در ساخت انواع وب سایت ها به راحتی می‌توانم
+                نیازهای پیچیده را به کد تمیز و قابل نگهداری تبدیل کنم.
+            </p>
+            <p style="margin-top:16px;">
+                <strong>باور من:</strong> هر پروژه یک مشکل واقعی را حل می‌کند. من اینجا هستم تا راه‌حلی بسازم که هم کار
+                کند و هم زیبا باشد.
+            </p>
+            <div class="about-actions">
+
+                <a href="#contact" class="btn-about btn-about-outline">ارسال پیام</a>
+            </div>
+        </div>
+        <div class="about-image">
+            <span>📸 عکس یا ویدیوی معرفی</span>
+        </div>
+    </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section class="experience-section section-padding" id="experience">
+    <div class="section-header">
+        <div class="section-label">
+            <div class="section-label-line"></div>
+            <span>سابقه</span></div>
+        <h2 class="section-title">مسیر <strong>حرفه‌ای</strong></h2>
+    </div>
+    <div class="experience-grid">
+        {% for way in ways %}
+            <div class="experience-card">
+                <div class="experience-card-title">{{ way.title }}</div>
+                <div class="experience-card-sub">{{ way.bazeh_zamani }}</div>
+                <div class="experience-card-desc">
+                    {{ way.description }}
+                    <ul>
+
+                        {% for line in way.mesal.splitlines %}
+                            <li>{{ line }}</li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section" id="contact">
+    <div class="section-header">
+        <div class="section-label">
+            <div class="section-label-line"></div>
+            <span>ارتباط</span></div>
+        <h2 class="section-title">بیایید با هم <strong>کار کنیم</strong></h2>
+        <p class="section-sub">برای پروژه‌های جدید، مشاوره یا همکاری — خوشحال می‌شوم بشنوم.</p>
+    </div>
+    <div class="contact-grid">
+        <div class="contact-info">
+            <h3>راه‌های ارتباطی</h3>
+            <p>می‌توانید از طریق ایمیل، شبکه‌های اجتماعی یا فرم مقابل با من در ارتباط باشید.</p>
+            <div class="contact-item">
+                <div class="contact-item-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="contact-item-label">ایمیل</div>
+                    <a href="mailto:aaskari379hh@gmail.com" class="contact-item-value">
+                        aaskari379hh@gmail.com
+                    </a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-item-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="contact-item-label">گیت‌هاب</div>
+                    <a href="https://github.com/yourusername"
+                       target="_blank"
+                       class="contact-item-value">
+                        github.com/yourusername
+                    </a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-item-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="contact-item-label">تلگرام</div>
+                    <a href="https://t.me/aaskari379"
+                       target="_blank"
+                       class="contact-item-value">
+                        @aaskari379
+                    </a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-item-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                </div>
+
+                <div>
+                    <div class="contact-item-label">تلفن</div>
+
+                    <a href="tel:+989054770679" class="contact-item-value">
+                        +989054770679
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="contact-form">
+            <div class="contact-form-title">فرم تماس</div>
+            <div class="contact-form-group">
+                <label class="contact-form-label">نام و نام خانوادگی</label>
+                <input type="text" class="contact-form-input" placeholder="نام شما">
+            </div>
+            <div class="contact-form-group">
+                <label class="contact-form-label">ایمیل</label>
+                <input type="email" class="contact-form-input" placeholder="email@example.com">
+            </div>
+            <div class="contact-form-group">
+                <label class="contact-form-label">موضوع</label>
+                <input type="text" class="contact-form-input" placeholder="مثلاً همکاری، مشاوره، پروژه جدید">
+            </div>
+            <div class="contact-form-group">
+                <label class="contact-form-label">پیام</label>
+                <textarea class="contact-form-input"
+                          placeholder="توضیحات پروژه یا درخواست خود را بنویسید..."></textarea>
+            </div>
+            <button class="btn-contact">📩 ارسال پیام</button>
+        </div>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-name">Python · Django Full-Stack</div>
+            <div class="footer-desc">ساخت وب‌سایت‌های مدرن، امن و مقیاس‌پذیر</div>
+        </div>
+        <div class="footer-links">
+            <a href="#projects">پروژه‌ها</a>
+            <a href="#skills">مهارت‌ها</a>
+            <a href="#experience">تجربه</a>
+            <a href="#contact">تماس</a>
+        </div>
+        <div class="footer-socials">
+            <a href="https://github.com/yourusername">GitHub</a>
+            <a href="https://t.me/aaskari379">Telegram</a>
+            <a href="mailto:aaskari379hh@gmail.com">Email</a>
+            <a href="tel:+989054770679">Phone</a>
+
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© ۱۴۰۵ — تمامی حقوق محفوظ است</span>
+        <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ بازگشت به بالا</button>
+    </div>
+</footer>
+
+<!-- ── SCRIPTS ── -->
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>
