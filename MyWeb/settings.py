@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-1sbg3%be=akjelln$4525$=cy*1icr7v3wc!7l^zix#t495i7%
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
+    "aaskari-portfolio.onrender.com",
+    "https://aaskari-portfolio.onrender.com",
 ]
 
 # Application definition
