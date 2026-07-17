@@ -7,6 +7,7 @@ from rezoomeh_abzar_app.models import *
 from ticket_app.models import *
 
 def home(request):
+
     Me=AboutMe.objects.first()
     fanavaries=Fanavary.objects.all()
     sits=Site.objects.all()
@@ -19,4 +20,11 @@ def home(request):
         'abzars':abzars,
         'ways':ways,
     }
+    if request.method == "POST":
+        Ticket.objects.create(
+            name_family=request.POST["name_family"],
+            email=request.POST["email"],
+            mozoo=request.POST["mozoo"],
+            text=request.POST["text"],
+        )
     return render(request,'home_app/index.html',context)
